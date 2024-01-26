@@ -1,0 +1,57 @@
+@{
+    ViewData["Title"] = "Withdraw";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/withdraw.css">
+</head>
+<body>
+    <div class="text-center">
+        <h1 class="display-4">FUND WITHDRAWAL</h1>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form method="post" asp-controller="Home" asp-action="Withdraw">
+                    <div class="form-group">
+                        <label for="accountNumber">Account Number:</label>
+                        <input type="text" class="form-control" id="accountNumber" name="AccountNumber" required>
+                    </div>
+                    <p></p>
+                    <div class="form-group">
+                        <label for="amount">Withdrawal Amount:</label>
+                        <input type="number" class="form-control" id="amount" name="Amount" required>
+                    </div>
+                    <p></p>
+                    <div class="form-group">
+                        <label for="comments">Comments (Max 30 characters):</label>
+                        <input type="text" class="form-control" id="comments" name="Comments" maxlength="30">
+                    </div>
+                    <p></p>
+                    <button type="button" onclick="confirmWithdraw()" class="btn btn-primary">Withdraw</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function confirmWithdraw() {
+            var accountNumber = document.getElementById('accountNumber').value;
+            var withdrawalAmount = document.getElementById('amount').value;
+            var comments = document.getElementById('comments').value;
+            var confirmationMessage = "Are you sure you want to withdraw $" + withdrawalAmount + " from Account Number " + accountNumber + "?";
+            
+            if (confirm(confirmationMessage)) {
+                var form = document.querySelector('form');
+                form.submit();
+            } else {
+                // Handle cancellation
+            }
+        }
+    </script>
+</body>
+</html>

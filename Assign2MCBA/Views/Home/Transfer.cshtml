@@ -1,0 +1,57 @@
+@{
+    ViewData["Title"] = "Transfer";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/transfer.css">
+</head>
+<body>
+    <div class="text-center">
+        <h1 class="display-4">FUND TRANSFER</h1>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form method="post" asp-controller="Home" asp-action="Transfer">
+                    <div class="form-group">
+                        <label for="transferAccount">Account Number:</label>
+                        <input type="number" class="form-control" id="transferAccount" name="TransferAccount" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="transferAccountID">Destination Account Number:</label>
+                        <input type="number" class="form-control" id="transferAccountID" name="TransferAccountID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Transfer Amount:</label>
+                        <input type="number" class="form-control" id="amount" name="Amount" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Comment (Optional, max 30 characters):</label>
+                        <input type="text" class="form-control" id="comment" name="Comment" maxlength="30">
+                    </div>
+                    <button type="button" onclick="confirmTransfer()" class="btn btn-primary">Transfer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function confirmTransfer() {
+            var transferAmount = document.getElementById('amount').value;
+            var transferAccount = document.getElementById('transferAccount').value;
+            var transferAccountID = document.getElementById('transferAccountID').value;
+            var confirmationMessage = "Are you sure you want to transfer $" + transferAmount + 
+                                      " to account number " + transferAccount + 
+                                      " (Account Number: " + transferAccountID + ")?";
+            if (confirm(confirmationMessage)) {
+                var form = document.querySelector('form');
+                form.submit();
+            }
+        }
+    </script>
+</body>
+</html>

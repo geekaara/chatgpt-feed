@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "LOGIN TO MCBA";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/login.css">
+    <script>
+        window.onload = function() {
+            document.getElementById('loginId').value = sessionStorage.getItem('LoginID') || '';
+            document.getElementById('password').value = sessionStorage.getItem('PasswordHash') || '';
+        };
+
+        function submitLoginForm() {
+            var form = document.querySelector('form');
+            form.submit();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>@ViewData["Title"]</h2>
+        <form method="post" asp-controller="Home" asp-action="Login">
+            <div class="login-group">
+                <label for="loginId">Login ID:</label>
+                <input type="text" id="loginId" name="LoginID" required>
+            </div>
+            <div class="login-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="PasswordHash" required>
+            </div>
+            <div class="login-group" style="text-align: center;">
+                <button type="button" onclick="submitLoginForm()" class="btn-login">Log In</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

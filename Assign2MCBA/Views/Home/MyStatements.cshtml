@@ -1,0 +1,63 @@
+@{
+    ViewData["Title"] = "My Statement";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/statement.css">
+</head>
+<body>
+    <div class="text-center">
+        <h1 class="display-4">ACCOUNT STATEMENT</h1>
+    </div>
+
+    <div class="container">
+        <div class="account-selection">
+            <button onclick="loadStatement('S')">Savings Account</button>
+            <button onclick="loadStatement('C')">Checking Account</button>
+        </div>
+        
+        <div id="statementDetails" class="statement-details">
+            <!-- Account details and transactions  -->
+        </div>
+    </div>
+
+    <script>
+        function loadStatement(accountType) {
+            // to be added 
+
+            var statementHtml = accountType === 'S' ? '<h2>Savings Account Statement</h2>' : '<h2>Checking Account Statement</h2>';
+            
+            statementHtml += `
+                <table class="transactions-table">
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Amount</th>
+                        <th>Account Number</th>
+                        <th>Comments</th>
+                        <th>Transaction Time</th>
+                        <th>Transaction Type</th>
+                        <th>Destination Account</th>
+                    </tr>
+                    <tr>
+                        <td>123</td>
+                        <td>$500</td>
+                        <td>00123456789</td>
+                        <td>Payment</td>
+                        <td>2024-01-22 10:00 AM</td>
+                        <td>Deposit</td>
+                        <td>00123456790</td>
+                    </tr>
+                    <!-- actual rows -->
+                </table>
+            `;
+
+            document.getElementById('statementDetails').innerHTML = statementHtml;
+        }
+    </script>
+
+</body>
+</html>
+
